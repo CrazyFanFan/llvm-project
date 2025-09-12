@@ -6085,6 +6085,7 @@ SwiftASTContext::GetTypeInfo(opaque_compiler_type_t type,
   case swift::TypeKind::TypeVariable:
   case swift::TypeKind::Unresolved:
   case swift::TypeKind::VariadicSequence:
+  case swift::TypeKind::YieldResult:
     LOG_PRINTF(GetLog(LLDBLog::Types), "Unexpected type: %s",
                swift_can_type.getString().c_str());
     assert(false && "Internal compiler type");
@@ -6249,6 +6250,7 @@ lldb::TypeClass SwiftASTContext::GetTypeClass(opaque_compiler_type_t type) {
   case swift::TypeKind::PackArchetype:
   case swift::TypeKind::Unresolved:
   case swift::TypeKind::VariadicSequence:
+  case swift::TypeKind::YieldResult:
     assert(false && "Internal compiler type");
     break;
   case swift::TypeKind::BuiltinBridgeObject:
@@ -6757,6 +6759,7 @@ lldb::Encoding SwiftASTContext::GetEncoding(opaque_compiler_type_t type,
   case swift::TypeKind::ErrorUnion:
   case swift::TypeKind::Unresolved:
   case swift::TypeKind::VariadicSequence:
+  case swift::TypeKind::YieldResult:
     break;
   case swift::TypeKind::BuiltinInteger:
   case swift::TypeKind::BuiltinIntegerLiteral:
@@ -6885,6 +6888,7 @@ SwiftASTContext::GetNumChildren(opaque_compiler_type_t type,
   case swift::TypeKind::TypeVariable:
   case swift::TypeKind::Unresolved:
   case swift::TypeKind::VariadicSequence:
+  case swift::TypeKind::YieldResult:
     break;
   case swift::TypeKind::UnmanagedStorage:
   case swift::TypeKind::UnownedStorage:
@@ -7014,6 +7018,7 @@ uint32_t SwiftASTContext::GetNumFields(opaque_compiler_type_t type,
   case swift::TypeKind::TypeVariable:
   case swift::TypeKind::Unresolved:
   case swift::TypeKind::VariadicSequence:
+  case swift::TypeKind::YieldResult:
     break;
   case swift::TypeKind::UnmanagedStorage:
   case swift::TypeKind::UnownedStorage:
@@ -7243,6 +7248,7 @@ CompilerType SwiftASTContext::GetFieldAtIndex(opaque_compiler_type_t type,
   case swift::TypeKind::TypeVariable:
   case swift::TypeKind::Unresolved:
   case swift::TypeKind::VariadicSequence:
+  case swift::TypeKind::YieldResult:
     break;
   case swift::TypeKind::UnmanagedStorage:
   case swift::TypeKind::UnownedStorage:
@@ -7462,6 +7468,7 @@ uint32_t SwiftASTContext::GetNumPointeeChildren(opaque_compiler_type_t type) {
   case swift::TypeKind::UnboundGeneric:
   case swift::TypeKind::Unresolved:
   case swift::TypeKind::VariadicSequence:
+  case swift::TypeKind::YieldResult:
     return 0;
   case swift::TypeKind::BuiltinInteger:
   case swift::TypeKind::BuiltinIntegerLiteral:
@@ -7615,6 +7622,7 @@ llvm::Expected<CompilerType> SwiftASTContext::GetChildCompilerTypeAtIndex(
   case swift::TypeKind::UnboundGeneric:
   case swift::TypeKind::Unresolved:
   case swift::TypeKind::VariadicSequence:
+  case swift::TypeKind::YieldResult:
     break;
 
   case swift::TypeKind::UnmanagedStorage:
@@ -8011,6 +8019,7 @@ size_t SwiftASTContext::GetIndexOfChildMemberWithName(
     case swift::TypeKind::UnboundGeneric:
     case swift::TypeKind::Unresolved:
     case swift::TypeKind::VariadicSequence:
+    case swift::TypeKind::YieldResult:
       break;
 
     case swift::TypeKind::UnmanagedStorage:
@@ -8404,6 +8413,7 @@ bool SwiftASTContext::DumpTypeValue(
   case swift::TypeKind::UnboundGeneric:
   case swift::TypeKind::Unresolved:
   case swift::TypeKind::VariadicSequence:
+  case swift::TypeKind::YieldResult:
     break;
 
   case swift::TypeKind::Class:
